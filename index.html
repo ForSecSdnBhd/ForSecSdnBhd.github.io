@@ -1,1 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FORSEC SDN. BHD. - Enterprise-grade cybersecurity solutions and threat protection services">
+    <title>FORSEC SDN. BHD. - Cybersecurity Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous">
+<style>
+    :root {
+        --primary-color: #64ffda;
+        --secondary-color: #0a192f;
+        --accent-color: #4ecdc4;
+        --text-color: #ccd6f6;
+        --muted-color: #8892b0;
+        --background-color: #112240;
+        --card-bg: #0a192f;
+    }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: var(--secondary-color);
+        color: #ffffff;
+        line-height: 1.6;
+    }
+
+    /* Enhanced Navigation */
+    .navbar {
+        padding: 1rem 5%;
+        background: rgba(10, 25, 47, 0.98);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .logo-img {
+        height: 40px;
+        width: auto;
+        transition: all 0.3s ease;
+    }
+    
+    .logo-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        position: relative;
+        padding: 0.5rem 0;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    /* General heading style */
+    section h2 {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Mobile Menu Improvements */
+    .hamburger {
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--text-color);
+        display: none;
+        z-index: 1001;
+    }
+
+    .hamburger .fa-times {
+        display: none;
+    }
+
+    .hamburger.active .fa-bars {
+        display: none;
+    }
+
+    .hamburger.active .fa-times {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 70%;
+            background: var(--secondary-color);
+            flex-direction: column;
+            padding: 6rem 2rem;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Enhanced Hero Section */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, rgba(16, 36, 70, 0) 70%);
+        animation: pulse 8s infinite;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--muted-color);
+    }
+
+    .certification-badges {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .certification-badge {
+        background: rgba(100, 255, 218, 0.1);
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        border: 1px solid var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+        color: var(--secondary-color);
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+    }
+
+    /* Improved Services Grid */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem 5%;
+    }
+
+    .service-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(100, 255, 218, 0.1);
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .service-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .service-card ul {
+        list-style: none;
+    }
+
+    .service-card li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .service-card li::before {
+        content: "▹";
+        color: var(--primary-color);
+    }
+
+    /* Improved Company Info Section */
+    .company-info {
+        padding: 5rem 5%;
+        background: var(--background-color);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .company-info h2 {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .company-details {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(100, 255, 218, 0.1);
+    }
+
+    .nacs-badge {
+        background: var(--card-bg);
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid var(--primary-color);
+        margin: 0.5rem 0;
+    }
+
+    /* Enhanced Contact Section */
+    .contact-section {
+        padding: 5rem 5%;
+        background: var(--background-color);
+    }
+
+    .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .contact-form {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 15px;
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 1rem;
+        background: var(--secondary-color);
+        border: 1px solid rgba(100, 255, 218, 0.2);
+        color: var(--text-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+    }
+
+    .submit-btn {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    /* Enhanced Footer */
+    footer {
+        padding: 4rem 5% 2rem;
+        background: #020c1b;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        color: var(--muted-color);
+        border-top: 1px solid rgba(100, 255, 218, 0.1);
+    }
+
+    .footer-section h4 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-bottom {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(136, 146, 176, 0.1);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    .social-links a {
+        color: var(--muted-color);
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Animations */
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.05); opacity: 0.4; }
+        100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+	
+    /* Scroll to Top Button */
+    #scrollToTopBtn {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: #008CBA;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50px;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+    
+    #scrollToTopBtn:hover {
+      background-color: #005f73;
+    }
+</style>
+</head>
+<body>
+    <!-- Enhanced Navigation -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="FORSEC Logo" class="logo-img" loading="lazy">
+            <span class="logo-text">FORSEC SDN. BHD.</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </div>
+    </nav>
+
+    <!-- Improved Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+            <h1>Next-Gen Cybersecurity Solutions</h1>
+            <p class="reveal">The Force of Cyber Defense</p>
+            <div class="certification-badges reveal">
+                <div class="certification-badge">Enterprise-grade protection for your digital infrastructure</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <!-- Penetration Testing Services -->
+            <div class="service-card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h3>Penetration Testing</h3>
+                <ul>
+                    <li>Black Box Services</li>
+                    <li>Red Team Services</li>
+                    <li>External Penetration Test</li>
+                    <li>Internal Penetration Test</li>
+                    <li>Web Application Penetration Test</li>
+                    <li>White Box Services</li>
+                </ul>
+            </div>
+    
+            <!-- Vulnerability Assessments -->
+            <div class="service-card">
+                <i class="fas fa-search service-icon"></i>
+                <h3>Vulnerability Assessments</h3>
+                <ul>
+                    <li>Host Operating System Vulnerability Assessment</li>
+                    <li>Network Device Vulnerability Assessment</li>
+                    <li>Database Security Assessment</li>
+                </ul>
+            </div>
+    
+            <!-- Cybersecurity Management -->
+            <div class="service-card">
+                <i class="fas fa-cogs service-icon"></i>
+                <h3>Cybersecurity Management</h3>
+                <ul>
+                    <li>Cyber Security Management Services</li>
+                    <li>Security Operations Centre (SOC) Services</li>
+                    <li>Cyber Threat Intelligence Services</li>
+                    <li>Security Hardening Services</li>
+                </ul>
+            </div>
+    
+            <!-- Advanced Threat Services -->
+            <div class="service-card">
+                <i class="fas fa-bug service-icon"></i>
+                <h3>Advanced Threat Services</h3>
+                <ul>
+                    <li>Cyber Forensics Services</li>
+                    <li>Threat Hunting</li>
+                    <li>Compromise Assessment</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Completed Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container reveal">
+            <div class="contact-info">
+                <h3>Cybersecurity Experts Ready 24/7</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <strong>Email:</strong> <a href="mailto:hello[at]forsec[dot]com[dot]my" onclick="return false;">hello[at]forsec[dot]com[dot]my</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> PLAZA JELUTONG, NO. 26-G & 26-1,BLOCK 5C, PERSIARAN GERBANG UTAMA, BUKIT JELUTONG, 40150, SHAH ALAM, SELANGOR
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Footer -->
+    <footer>
+        <div class="footer-section">
+            <h4>FORSEC SDN. BHD.</h4>
+            <p>Cybersecurity Solutions Provider<br>
+            Registration: 202401041966 (1587812-P)</p>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <div class="footer-links">
+                <a href="#services">Penetration Testing</a>
+                <a href="#services">Vulnerability Assessments</a>
+                <a href="#services">Cybersecurity Management</a>
+                <a href="#services">Advanced Threat Services</a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4><center>Licenses</center></h4>
+            <div class="certification-badges">
+                <div class="nacs-badge">NACSA 20099-02</div>
+                <div class="nacs-badge">NACSA 20105-01</div>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Certifications</h4>
+            <div class="certification-badges">
+                <div class="nacs-badge">CEH</div>
+                <div class="nacs-badge">CHFI</div>
+                <div class="nacs-badge">OSCP</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="github"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© <span id="year"></span> FORSEC SDN. BHD. All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+	document.getElementById("year").textContent = new Date().getFullYear();
+        // Intersection Observer for reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Mobile menu functionality
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Close menu when clicking outside
+            if (navLinks.classList.contains('active')) {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+
+        function closeMenuOnClickOutside(e) {
+            if (!e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+                toggleMenu();
+            }
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+                if (window.innerWidth <= 768) toggleMenu();
+            });
+        });
+	document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('menuToggle').addEventListener('click', toggleMenu);
+    });
+    // Show the button when the user scrolls down 200px from the top
+    window.onscroll = function() {
+      let scrollBtn = document.getElementById("scrollToTopBtn");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+    
+    // Smooth scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    </script>
+	<!-- Scroll to Top Button -->
+<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">↑</button>
+
+</body>
+</html>
