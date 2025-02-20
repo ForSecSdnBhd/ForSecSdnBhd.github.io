@@ -152,6 +152,33 @@
         transition: color 0.3s ease;
     }
 
+    ul li {
+        position: relative;
+        cursor: pointer;
+    }
+    
+    ul li::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        font-size: 12px;
+        z-index: 10;
+    }
+    
+    ul li:hover::after {
+        opacity: 1;
+    }
+
     /* General heading style */
     section h2 {
         margin: 2rem 0;
@@ -547,12 +574,16 @@
                 <i class="fas fa-shield-alt service-icon"></i>
                 <h3>Penetration Testing</h3>
                 <ul>
-                    <li>Black Box Services</li>
-                    <li>Red Team Services</li>
-                    <li>External Penetration Test</li>
-                    <li>Internal Penetration Test</li>
-                    <li>Web Application Penetration Test</li>
-                    <li>White Box Services</li>
+                    <li data-tooltip="Comprehensive security testing with varying levels of access.">Black/White Box Services</li>
+                    <li data-tooltip="Testing cloud infrastructure security and configurations.">Cloud Penetration Test</li>
+                    <li data-tooltip="Assessing external network defenses against attacks.">External Penetration Test</li>
+                    <li data-tooltip="Evaluating internal network security from within the organization.">Internal Penetration Test</li>
+                    <li data-tooltip="Security testing for mobile applications on Android and iOS.">Mobile Application Penetration Test</li>
+                    <li data-tooltip="Simulating real-world attacks to assess detection and response.">Red Team Services</li>
+                    <li data-tooltip="Testing human factors and employee security awareness.">Social Engineering Penetration Test</li>
+                    <li data-tooltip="Assessing security of web applications and APIs.">Web Application Penetration Test</li>
+                    <li data-tooltip="Identifying vulnerabilities in web applications to prevent breaches.">Web Application Penetration Test</li>
+                    <li data-tooltip="Evaluating security of wireless networks and configurations.">Wireless Network Penetration Test</li>
                 </ul>
             </div>
     
@@ -561,9 +592,16 @@
                 <i class="fas fa-search service-icon"></i>
                 <h3>Vulnerability Assessments</h3>
                 <ul>
-                    <li>Host Operating System Vulnerability Assessment</li>
-                    <li>Network Device Vulnerability Assessment</li>
-                    <li>Database Security Assessment</li>
+				    <li data-tooltip="Assessing API endpoints for security flaws and vulnerabilities.">API Security Assessment</li>
+				    <li data-tooltip="Evaluating cloud infrastructure for misconfigurations and threats.">Cloud Security Assessment</li>
+				    <li data-tooltip="Ensuring compliance with industry regulations and standards.">Compliance-based Security Assessment</li>
+				    <li data-tooltip="Identifying security risks in database configurations and queries.">Database Security Assessment</li>
+				    <li data-tooltip="Scanning operating systems for known vulnerabilities and patches.">Host Operating System Vulnerability Assessment</li>
+				    <li data-tooltip="Assessing security of mobile applications on various platforms.">Mobile Application Vulnerability Assessment</li>
+				    <li data-tooltip="Evaluating network devices like routers and firewalls for security issues.">Network Device Vulnerability Assessment</li>
+				    <li data-tooltip="Testing human vulnerability through phishing and other social attacks.">Social Engineering Vulnerability Assessment</li>
+				    <li data-tooltip="Analyzing web applications for common security risks like XSS and SQL Injection.">Web Application Vulnerability Assessment</li>
+				    <li data-tooltip="Examining wireless networks for security flaws and unauthorized access.">Wireless Network Security Assessment</li>
                 </ul>
             </div>
     
@@ -572,10 +610,16 @@
                 <i class="fas fa-cogs service-icon"></i>
                 <h3>Cybersecurity Management</h3>
                 <ul>
-                    <li>Cyber Security Management Services</li>
-                    <li>Security Operations Centre (SOC) Services</li>
-                    <li>Cyber Threat Intelligence Services</li>
-                    <li>Security Hardening Services</li>
+				    <li data-tooltip="Ensures compliance with legal and regulatory requirements.">Compliance Management Services</li>
+				    <li data-tooltip="Comprehensive management of an organization's security framework.">Cyber Security Management Services</li>
+				    <li data-tooltip="Collecting and analyzing threat intelligence to anticipate attacks.">Cyber Threat Intelligence Services</li>
+				    <li data-tooltip="Coordinated response to security incidents to minimize impact.">Incident Response Services</li>
+				    <li data-tooltip="Managing and applying security patches to protect systems.">Patch Management Services</li>
+				    <li data-tooltip="Training employees to recognize and avoid security threats.">Security Awareness Training</li>
+				    <li data-tooltip="Strengthening security by configuring systems securely.">Security Hardening Services</li>
+				    <li data-tooltip="24/7 monitoring and management of security systems.">Security Operations Centre (SOC) Services</li>
+				    <li data-tooltip="Identifying and mitigating vulnerabilities proactively.">Vulnerability Management Services</li>
+				    <li data-tooltip="Implementing Zero Trust principles to secure access and data.">Zero Trust Architecture Implementation</li>
                 </ul>
             </div>
     
@@ -584,9 +628,16 @@
                 <i class="fas fa-bug service-icon"></i>
                 <h3>Advanced Threat Services</h3>
                 <ul>
-                    <li>Cyber Forensics Services</li>
-                    <li>Threat Hunting</li>
-                    <li>Compromise Assessment</li>
+				    <li data-tooltip="Simulating advanced cyber attacks to evaluate defenses.">APT Emulation and Simulation</li>
+				    <li data-tooltip="Analyzing complex, persistent threats targeting organizations.">Advanced Persistent Threat (APT) Analysis</li>
+				    <li data-tooltip="Testing and simulating advanced attack scenarios.">Advanced Security Simulation and Testing</li>
+				    <li data-tooltip="Assessing systems for signs of compromise or breaches.">Compromise Assessment</li>
+				    <li data-tooltip="Investigating cyber incidents to identify attack vectors.">Cyber Forensics Services</li>
+				    <li data-tooltip="Using deception tools to mislead attackers and gather intel.">Deception Technology Services</li>
+				    <li data-tooltip="Analyzing malware to understand its behavior and impact.">Malware Analysis Services</li>
+				    <li data-tooltip="Monitoring network traffic for suspicious activities.">Network Traffic Analysis</li>
+				    <li data-tooltip="Reverse engineering software to uncover security flaws.">Reverse Engineering Services</li>
+				    <li data-tooltip="Proactively searching for threats and indicators of compromise.">Threat Hunting</li>
                 </ul>
             </div>
         </div>
