@@ -163,15 +163,18 @@
         bottom: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #333;
-        color: #fff;
-        padding: 5px;
-        border-radius: 5px;
-        white-space: nowrap;
+        background-color: #1e2a38; /* Dark navy matching the background */
+        color: #00d1b2; /* Cyan/teal text */
+        padding: 8px 12px;
+        border-radius: 6px;
+        white-space: normal;
+        max-width: 80vw;
+        word-wrap: break-word;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
-        font-size: 12px;
+        font-size: 13px;
         z-index: 10;
     }
     
@@ -335,9 +338,34 @@
     }
 
     .service-icon {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-bottom: 1rem;
+        display: inline-block;
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+        color: #00d1b2;
+        animation: pulse-glow 2s infinite alternate, pulsing 1.5s infinite ease-in-out;
+        transition: transform 0.3s;
+    }
+    
+    .service-icon:hover {
+        transform: scale(1.2); /* Slight zoom on hover */
+    }
+    
+    @keyframes pulse-glow {
+        0% {
+            text-shadow: 0 0 5px #00d1b2, 0 0 10px #00d1b2, 0 0 15px #00d1b2;
+        }
+        100% {
+            text-shadow: 0 0 15px #00ffb2, 0 0 20px #00ffb2, 0 0 25px #00ffb2;
+        }
+    }
+    
+    @keyframes pulsing {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
     }
 
     .service-card ul {
@@ -571,8 +599,8 @@
         <div class="services-grid">
             <!-- Penetration Testing Services -->
             <div class="service-card">
-                <i class="fas fa-shield-alt service-icon"></i>
-                <h3>Penetration Testing</h3>
+                <center><i class="fas fa-shield-alt service-icon"></i>
+                <h3>Penetration Testing</h3></center><br>
                 <ul>
                     <li data-tooltip="Comprehensive security testing with varying levels of access.">Black/White Box Services</li>
                     <li data-tooltip="Testing cloud infrastructure security and configurations.">Cloud Penetration Test</li>
@@ -589,8 +617,8 @@
     
             <!-- Vulnerability Assessments -->
             <div class="service-card">
-                <i class="fas fa-search service-icon"></i>
-                <h3>Vulnerability Assessments</h3>
+                <center><i class="fas fa-search service-icon"></i>
+                <h3>Vulnerability Assessments</h3></center><br>
                 <ul>
 				    <li data-tooltip="Assessing API endpoints for security flaws and vulnerabilities.">API Security Assessment</li>
 				    <li data-tooltip="Evaluating cloud infrastructure for misconfigurations and threats.">Cloud Security Assessment</li>
@@ -607,8 +635,8 @@
     
             <!-- Cybersecurity Management -->
             <div class="service-card">
-                <i class="fas fa-cogs service-icon"></i>
-                <h3>Cybersecurity Management</h3>
+                <center><i class="fas fa-cogs service-icon"></i>
+                <h3>Cybersecurity Management</h3></center><br>
                 <ul>
 				    <li data-tooltip="Ensures compliance with legal and regulatory requirements.">Compliance Management Services</li>
 				    <li data-tooltip="Comprehensive management of an organization's security framework.">Cyber Security Management Services</li>
@@ -625,8 +653,8 @@
     
             <!-- Advanced Threat Services -->
             <div class="service-card">
-                <i class="fas fa-bug service-icon"></i>
-                <h3>Advanced Threat Services</h3>
+                <center><i class="fas fa-bug service-icon"></i>
+                <h3>Advanced Threat Services</h3></center><br>
                 <ul>
 				    <li data-tooltip="Simulating advanced cyber attacks to evaluate defenses.">APT Emulation and Simulation</li>
 				    <li data-tooltip="Analyzing complex, persistent threats targeting organizations.">Advanced Persistent Threat (APT) Analysis</li>
@@ -685,7 +713,7 @@
             </div>
         </div>
         <div class="footer-section">
-            <h4>Certifications</h4>
+            <h4>Certified Professionals</h4>
             <div class="certification-badges">
                 <div class="nacs-badge">CEH</div>
                 <div class="nacs-badge">CHFI</div>
@@ -774,15 +802,21 @@
             }
         }
 
-        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
-                if (window.innerWidth <= 768) toggleMenu();
+                const offset = 80; // Adjust according to your navbar height
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             });
         });
+
 	document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('menuToggle').addEventListener('click', toggleMenu);
     });
