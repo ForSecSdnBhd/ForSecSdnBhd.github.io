@@ -417,6 +417,14 @@
         margin: 0.5rem 0;
     }
 
+    .pro-cert {
+        background: var(--card-bg);
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid var(--primary-color);
+        margin: 0.5rem 0;
+    }
+
     /* Enhanced Contact Section */
     .contact-section {
         padding: 5rem 5%;
@@ -560,6 +568,84 @@
     #scrollToTopBtn:hover {
       background-color: #005f73;
     }
+    .partners-section {
+        padding: 5rem 5%;
+        background: var(--background-color);
+        text-align: center;
+    }
+
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    .partner-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        background: rgba(100, 255, 218, 0.05);
+        border-radius: 10px;
+        border: 1px solid rgba(100, 255, 218, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .partner-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(100, 255, 218, 0.1);
+        border-color: var(--primary-color);
+    }
+
+    .partner-item::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(100, 255, 218, 0.2) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    .partner-item:active::before {
+        width: 150%;
+        height: 150%;
+    }
+
+    .partner-logo {
+        max-width: 160px;
+        height: auto;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .partner-item:hover .partner-logo {
+        filter: grayscale(0%);
+    }
+
+    @media (max-width: 768px) {
+        .partners-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .partner-logo {
+            max-width: 120px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .partners-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 </head>
 <body>
@@ -572,6 +658,7 @@
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#services">Services</a>
+            <a href="#partners">Partners</a>
             <a href="#contact">Contact</a>
         </div>
         <div class="hamburger" id="menuToggle">
@@ -580,7 +667,6 @@
         </div>
     </nav>
 
-    <!-- Improved Hero Section -->
     <!-- Matrix Background -->
     <canvas class="matrix-bg"></canvas>
     
@@ -670,7 +756,15 @@
             </div>
         </div>
     </section>
-    <!-- Completed Contact Section -->
+    <section class="partners-section" id="partners">
+        <h2 class="section-title">Trusted Partners</h2>
+        <div class="partners-grid reveal">
+            <a href="https://www.hexamyus.com/" target="_blank" rel="noopener noreferrer" class="partner-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/6672440674b638336c881abe/9752acb3-bf78-4049-832e-456d2464bb3a/hexa-01.png?format=15w" alt="Hexa MYUS Sdn. Bhd." class="Hexa MYUS" loading="lazy">
+            </a>
+        </div>
+    </section>
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <h2 class="section-title">Contact Us</h2>
         <div class="contact-container reveal">
@@ -689,7 +783,7 @@
         </div>
     </section>
 
-    <!-- Complete Footer -->
+    <!-- Footer -->
     <footer>
         <div class="footer-section">
             <h4>FORSEC SDN. BHD.</h4>
@@ -715,11 +809,11 @@
         <div class="footer-section">
             <h4><center>Certified Professionals</center></h4>
             <div class="certification-badges">
-                <div class="nacs-badge">CEH</div>
-                <div class="nacs-badge">CHFI</div>
-                <div class="nacs-badge">CISSP</div>
-                <div class="nacs-badge">MBOT</div>
-                <div class="nacs-badge">OSCP</div>
+                <div class="pro-cert">CEH</div>
+                <div class="pro-cert">CHFI</div>
+                <div class="pro-cert">CISSP</div>
+                <div class="pro-cert">MBOT</div>
+                <div class="pro-cert">OSCP</div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -739,7 +833,7 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const matrixChars = '01';
+    const matrixChars = 'FORSEC';
     const fontSize = 18;
     const columns = canvas.width / fontSize;
     const drops = Array(Math.floor(columns)).fill(0);
